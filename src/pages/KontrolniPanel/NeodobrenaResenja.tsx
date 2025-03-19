@@ -16,22 +16,22 @@ const NeodobreniBlanketi = () => {
 
   const odobriResenje = async (id) => {
     let response = await axioss.put(
-      `http://localhost:5073/api/Solution/Approve?solutionId=${id}`,
+      `https://arhiva-backend.azurewebsites.net/api/Solution/Approve?solutionId=${id}`,
       {}
     );
     response = await axioss.get(
-      `http://localhost:5073/api/Solution/GetUnapproved`
+      `https://arhiva-backend.azurewebsites.net/api/Solution/GetUnapproved`
     );
     setNeodobrenaResenja(response.data);
   };
 
   const obrisiResenje = async (id) => {
     let response = await axioss.delete(
-      `http://localhost:5073/api/Solution/Delete?solutionId=${id}`,
+      `https://arhiva-backend.azurewebsites.net/api/Solution/Delete?solutionId=${id}`,
       {}
     );
     response = await axioss.get(
-      `http://localhost:5073/api/Solution/GetUnapproved`
+      `https://arhiva-backend.azurewebsites.net/api/Solution/GetUnapproved`
     );
     setNeodobrenaResenja(response.data);
   };
@@ -40,7 +40,7 @@ const NeodobreniBlanketi = () => {
     if (Cookies.get("role") === "Korisnik") navigate("/");
     const getResenja = async () => {
       const response = await axioss.get(
-        `http://localhost:5073/api/Solution/GetUnapproved`
+        `https://arhiva-backend.azurewebsites.net/api/Solution/GetUnapproved`
       );
       setNeodobrenaResenja(response.data);
 
@@ -48,12 +48,12 @@ const NeodobreniBlanketi = () => {
       const blanketiData = await Promise.all(
         response.data.map((resenje) =>
           axioss.get(
-            `http://localhost:5073/api/Blanket/GetById?id=${resenje.blanketId}`
+            `https://arhiva-backend.azurewebsites.net/api/Blanket/GetById?id=${resenje.blanketId}`
           )
         )
       );
       const blanketiMap = {};
-      blanketiData.forEach((response, index) => {
+      blanketiData.forEach((response) => {
         blanketiMap[response.data.id] = response.data;
       });
       setBlanketi(blanketiMap);

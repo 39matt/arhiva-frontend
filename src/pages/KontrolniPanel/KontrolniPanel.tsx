@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { redirect, useNavigate } from "react-router-dom";
-import client from "../../common/axios";
+import {  useNavigate } from "react-router-dom";
 import Modal from "../../components/modals/Modal";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
@@ -50,7 +49,7 @@ const KontrolniPanel = () => {
   ) => {
     try {
       const response = await axioss.post(
-        "http://localhost:5073/api/Course/Add",
+        "https://arhiva-backend.azurewebsites.net/api/Course/Add",
         {
           name: predmet.name,
           code: predmet.code,
@@ -72,7 +71,7 @@ const KontrolniPanel = () => {
   > = async (data) => {
     try {
       const response = await axioss.post(
-        `http://localhost:5073/api/MajorCourse/AddCourseToMajor?majorCode=${data.majorCode}&courseCode=${data.courseCode}&year=${data.year}`,
+        `https://arhiva-backend.azurewebsites.net/api/MajorCourse/AddCourseToMajor?majorCode=${data.majorCode}&courseCode=${data.courseCode}&year=${data.year}`,
         {}
       );
       if (response.status === 200) {
@@ -84,23 +83,23 @@ const KontrolniPanel = () => {
       }
     }
   };
-  const unaprediKorisnika: SubmitHandler<IUnaprediKorisnikaFormInput> = async (
-    data
-  ) => {
-    try {
-      const response = await axioss.put(
-        `http://localhost:5073/api/User/UnaprediUModeratora?username=${data.username}`,
-        {}
-      );
-      if (response.status === 200) {
-        setPoruka(response.data);
-      }
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        setPoruka(err.response?.data);
-      }
-    }
-  };
+  // const unaprediKorisnika: SubmitHandler<IUnaprediKorisnikaFormInput> = async (
+  //   data
+  // ) => {
+  //   try {
+  //     const response = await axioss.put(
+  //       `https://arhiva-backend.azurewebsites.net/api/User/UnaprediUModeratora?username=${data.username}`,
+  //       {}
+  //     );
+  //     if (response.status === 200) {
+  //       setPoruka(response.data);
+  //     }
+  //   } catch (err) {
+  //     if (axios.isAxiosError(err)) {
+  //       setPoruka(err.response?.data);
+  //     }
+  //   }
+  // };
 
   return (
     <>
@@ -279,7 +278,7 @@ const KontrolniPanel = () => {
         <form
           onSubmit={handleSubmitUnaprediKorisnikaOpen(async (data) => {
             const response = await axioss.get(
-              `http://localhost:5073/api/User/GetByUsername?username=${data.username}`
+              `https://arhiva-backend.azurewebsites.net/api/User/GetByUsername?username=${data.username}`
             );
             setUser({
               name: response.data["name"],
@@ -316,7 +315,7 @@ const KontrolniPanel = () => {
                 onClick={async () => {
                   try {
                     const response = await axioss.put(
-                      `http://localhost:5073/api/User/UnaprediUModeratora?username=${user?.username}
+                      `https://arhiva-backend.azurewebsites.net/api/User/UnaprediUModeratora?username=${user?.username}
                         `,
                       {}
                     );

@@ -8,7 +8,7 @@ import { FaBell, FaBellSlash } from "react-icons/fa";
 import Modal from "../../components/modals/Modal";
 
 const Predmet: React.FC = () => {
-  const { predmetCode, smerCode, smerGodina } = useParams();
+  const { predmetCode } = useParams();
   const [blanketi, setBlanketi] = useState<Blanket[]>();
   const [predmet, setPredmet] = useState<Predmet>();
   const [komentari, setKomentari] = useState<Komentar[]>();
@@ -32,66 +32,90 @@ const Predmet: React.FC = () => {
   const dodajKolokvijum1 = async (data: IDodajDatumFormInput) => {
     const k1 = async () => {
       try {
-        const response = await axioss.post(
-          `http://localhost:5073/api/Course/AddK1?code=${predmetCode}&date=${data.date}`
+        await axioss.post(
+          `https://arhiva-backend.azurewebsites.net/api/Course/AddK1?code=${predmetCode}&date=${data.date}`
         );
         window.location.reload();
-      } catch (err) {}
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err);
+        }
+
+      }
     };
     k1();
   };
   const obrisiK1 = async () => {
     const k1 = async () => {
       try {
-        const response = await axioss.delete(
-          `http://localhost:5073/api/Course/RemoveK1?code=${predmetCode}`
+        await axioss.delete(
+          `https://arhiva-backend.azurewebsites.net/api/Course/RemoveK1?code=${predmetCode}`
         );
         window.location.reload();
-      } catch (err) {}
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err);
+        }      }
     };
     k1();
   };
   const dodajKolokvijum2 = async (data: IDodajDatumFormInput) => {
     const k1 = async () => {
       try {
-        const response = await axioss.post(
-          `http://localhost:5073/api/Course/AddK2?code=${predmetCode}&date=${data.date}`
+        await axioss.post(
+          `https://arhiva-backend.azurewebsites.net/api/Course/AddK2?code=${predmetCode}&date=${data.date}`
         );
         window.location.reload();
-      } catch (err) {}
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err);
+        }
+      }
     };
     k1();
   };
   const obrisiK2 = async () => {
     const k1 = async () => {
       try {
-        const response = await axioss.delete(
-          `http://localhost:5073/api/Course/RemoveK2?code=${predmetCode}`
+        await axioss.delete(
+          `https://arhiva-backend.azurewebsites.net/api/Course/RemoveK2?code=${predmetCode}`
         );
         window.location.reload();
-      } catch (err) {}
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err);
+        }
+      }
     };
     k1();
   };
   const dodajIspit = async (data: IDodajDatumFormInput) => {
     const k1 = async () => {
       try {
-        const response = await axioss.post(
-          `http://localhost:5073/api/Course/AddI?code=${predmetCode}&date=${data.date}`
+        await axioss.post(
+          `https://arhiva-backend.azurewebsites.net/api/Course/AddI?code=${predmetCode}&date=${data.date}`
         );
         window.location.reload();
-      } catch (err) {}
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err);
+        }
+      }
     };
     k1();
   };
   const obrisiI = async () => {
     const k1 = async () => {
       try {
-        const response = await axioss.delete(
-          `http://localhost:5073/api/Course/RemoveI?code=${predmetCode}`
+        await axioss.delete(
+          `https://arhiva-backend.azurewebsites.net/api/Course/RemoveI?code=${predmetCode}`
         );
         window.location.reload();
-      } catch (err) {}
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err);
+        }
+      }
     };
     k1();
   };
@@ -100,16 +124,16 @@ const Predmet: React.FC = () => {
     let predmett;
     try {
       predmett = await axioss
-        .get(`http://localhost:5073/api/Course/GetByCode?code=${predmetCode}`)
+        .get(`https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${predmetCode}`)
         .then((r) => r.data);
       let response = await axioss.post(
-        `http://localhost:5073/api/Comment/Create?postedByUsername=${Cookies.get(
+        `https://arhiva-backend.azurewebsites.net/api/Comment/Create?postedByUsername=${Cookies.get(
           "username"
         )}&postedOnBlanketPredmet=${predmett.id}&content=${data.content}`,
         {}
       );
       response = await axioss.get(
-        `http://localhost:5073/api/Comment/GetForCourseOrBlanket?id=${predmett.id}`
+        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${predmett.id}`
       );
       setKomentari(response.data);
       setMessage("");
@@ -121,11 +145,11 @@ const Predmet: React.FC = () => {
   const refresh = async () => {
     const getComments = async () => {
       let response = await axioss.get(
-        `http://localhost:5073/api/Course/GetByCode?code=${predmetCode}`
+        `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${predmetCode}`
       );
       try {
         response = await axioss.get(
-          `http://localhost:5073/api/Comment/GetForCourseOrBlanket?id=${response.data["id"]}`
+          `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${response.data["id"]}`
         );
         setKomentari(response.data);
       } catch (err) {
@@ -140,7 +164,7 @@ const Predmet: React.FC = () => {
     const getFollowing = async () => {
       try {
         const response = await axioss.put(
-          `http://localhost:5073/api/Course/FollowUnfollow?code=${predmetCode}&email=${Cookies.get(
+          `https://arhiva-backend.azurewebsites.net/api/Course/FollowUnfollow?code=${predmetCode}&email=${Cookies.get(
             "email"
           )}`
         );
@@ -156,7 +180,7 @@ const Predmet: React.FC = () => {
     try {
       const getBlanketi = async () => {
         let response = await axioss.get(
-          `http://localhost:5073/api/Blanket/GetByCourse?courseCode=${predmetCode}`
+          `https://arhiva-backend.azurewebsites.net/api/Blanket/GetByCourse?courseCode=${predmetCode}`
         );
         setBlanketi(response.data);
       };
@@ -170,7 +194,7 @@ const Predmet: React.FC = () => {
     try {
       const getYears = async () => {
         let response = await axioss.get(
-          `http://localhost:5073/api/Blanket/GetCourseYears?courseCode=${predmetCode}`
+          `https://arhiva-backend.azurewebsites.net/api/Blanket/GetCourseYears?courseCode=${predmetCode}`
         );
         setGodine(response.data.sort((a, b) => b.localeCompare(a)));
       };
@@ -183,7 +207,7 @@ const Predmet: React.FC = () => {
   useEffect(() => {
     const getPredmet = async () => {
       let response = await axioss.get(
-        `http://localhost:5073/api/Course/GetByCode?code=${predmetCode}`
+        `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${predmetCode}`
       );
       setPredmet(response.data);
     };

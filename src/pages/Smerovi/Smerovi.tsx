@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { MdOutlinePostAdd } from "react-icons/md";
 
 async function getAllMajors() {
-  const response = await axios.get("http://localhost:5073/api/Major/GetAll", {
+  const response = await axios.get("https://arhiva-backend.azurewebsites.net/api/Major/GetAll", {
     method: "get",
     headers: { "Content-Type": "application/json" },
   });

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import client from "../../common/axios";
 import Cookies from "js-cookie";
 import Modal from "../../components/modals/Modal";
 import { useNavigate } from "react-router-dom";
@@ -14,21 +13,21 @@ const NeodobreniBlanketi = () => {
 
   const odobriBlanket = async (id) => {
     let response = await axioss.put(
-      `http://localhost:5073/api/Blanket/Approve?id=${id}`,
+      `https://arhiva-backend.azurewebsites.net/api/Blanket/Approve?id=${id}`,
       {}
     );
     response = await axioss.get(
-      `http://localhost:5073/api/Blanket/GetUnapproved`
+      `https://arhiva-backend.azurewebsites.net/api/Blanket/GetUnapproved`
     );
     setNeodobreniBlanketi(response.data);
   };
   const obrisiBlanket = async (courseCode, year, term, type) => {
     let response = await axioss.delete(
-      `http://localhost:5073/api/Blanket/Delete?courseCode=${courseCode}&year=${year}&term=${term}&type=${type}`,
+      `https://arhiva-backend.azurewebsites.net/api/Blanket/Delete?courseCode=${courseCode}&year=${year}&term=${term}&type=${type}`,
       {}
     );
     response = await axioss.get(
-      `http://localhost:5073/api/Blanket/GetUnapproved`
+      `https://arhiva-backend.azurewebsites.net/api/Blanket/GetUnapproved`
     );
     setNeodobreniBlanketi(response.data);
   };
@@ -37,7 +36,7 @@ const NeodobreniBlanketi = () => {
     if (Cookies.get("role") === "Korisnik") navigate("/");
     const getBlanketi = async () => {
       const response = await axioss.get(
-        `http://localhost:5073/api/Blanket/GetUnapproved`
+        `https://arhiva-backend.azurewebsites.net/api/Blanket/GetUnapproved`
       );
       setNeodobreniBlanketi(response.data);
     };

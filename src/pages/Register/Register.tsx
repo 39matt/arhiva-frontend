@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 const Register = () => {
@@ -11,7 +11,6 @@ const Register = () => {
     register,
     handleSubmit,
     watch,
-    reset,
     formState: { errors },
   } = useForm<IRegisterFormInput>();
   //const onSubmit: SubmitHandler<IFormInput> = (data, e) => console.log(data, e);
@@ -25,7 +24,7 @@ const Register = () => {
             <p className="alerts text-center text-red-600">{err}</p>
             <form
               onSubmit={handleSubmit(async (data) => {
-                await fetch("http://localhost:5073/api/User/Register", {
+                await fetch("https://arhiva-backend.azurewebsites.net/api/User/Register", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({

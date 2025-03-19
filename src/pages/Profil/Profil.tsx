@@ -20,19 +20,17 @@ const Profil: React.FC = () => {
   } = useForm<IIzmeniKorisnika>();
   const {
     register: registerPicture,
-    reset: resetPicture,
     handleSubmit: handleSubmitPicture,
   } = useForm<IDodajResenjeFormInput>();
   const {
     register: registerLozinka,
-    reset: resetLozinka,
     handleSubmit: handleSubmitLozinka,
   } = useForm<IPromeniLozinku>();
 
   async function getUser() {
     return await axioss
       .get(
-        `http://localhost:5073/api/User/GetByUsername?username=${Cookies.get(
+        `https://arhiva-backend.azurewebsites.net/api/User/GetByUsername?username=${Cookies.get(
           "username"
         )}`
       )
@@ -50,7 +48,7 @@ const Profil: React.FC = () => {
   const onSubmitKorisnik: SubmitHandler<IIzmeniKorisnika> = async (data) => {
     try {
       const response = await axioss.put(
-        `http://localhost:5073/api/User/IzmeniKorisnika?username=${user?.username}`,
+        `https://arhiva-backend.azurewebsites.net/api/User/IzmeniKorisnika?username=${user?.username}`,
         {
           name: data.ime || user?.name,
           surname: data.prezime || user?.surname,
@@ -76,7 +74,7 @@ const Profil: React.FC = () => {
   const onSubmitLozinka: SubmitHandler<IPromeniLozinku> = async (data) => {
     try {
       const response = await axioss.put(
-        `http://localhost:5073/api/User/PromeniLozinku?username=${user?.username}`,
+        `https://arhiva-backend.azurewebsites.net/api/User/PromeniLozinku?username=${user?.username}`,
         {
           staraLozinka: data.staraLozinka,
           novaLozinka: data.novaLozinka,
@@ -99,7 +97,7 @@ const Profil: React.FC = () => {
   ) => {
     const formData = new FormData();
     formData.append("image", data.document[0]);
-    const url = `http://localhost:5073/api/User/UpdatePicture?username=${Cookies.get(
+    const url = `https://arhiva-backend.azurewebsites.net/api/User/UpdatePicture?username=${Cookies.get(
       "username"
     )}`;
     try {

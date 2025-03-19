@@ -34,10 +34,10 @@ const Blanket: React.FC = () => {
   const refresh = async () => {
     try {
       const response = await axioss.get(
-        `http://localhost:5073/api/Blanket/GetById?id=${blanketId}`
+        `https://arhiva-backend.azurewebsites.net/api/Blanket/GetById?id=${blanketId}`
       );
       const commentResponse = await axioss.get(
-        `http://localhost:5073/api/Comment/GetForCourseOrBlanket?id=${response.data.id}`
+        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${response.data.id}`
       );
       setKomentari(commentResponse.data);
     } catch (err) {
@@ -49,13 +49,13 @@ const Blanket: React.FC = () => {
   const dodajKomentar = async (data: Komentar) => {
     try {
       await axioss.post(
-        `http://localhost:5073/api/Comment/Create?postedByUsername=${Cookies.get(
+        `https://arhiva-backend.azurewebsites.net/api/Comment/Create?postedByUsername=${Cookies.get(
           "username"
         )}&postedOnBlanketPredmet=${blanket?.id}&content=${data.content}`,
         {}
       );
       const response = await axioss.get(
-        `http://localhost:5073/api/Comment/GetForCourseOrBlanket?id=${blanket?.id}`
+        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${blanket?.id}`
       );
       setKomentari(response.data);
       setMessage("");
@@ -67,7 +67,7 @@ const Blanket: React.FC = () => {
   const dodajResenje = async (data: IDodajResenjeFormInput) => {
     const formData = new FormData();
     formData.append("file", data.document[0]);
-    const url = `http://localhost:5073/api/Blanket/AddSolution?blanketId=${blanketId}`;
+    const url = `https://arhiva-backend.azurewebsites.net/api/Blanket/AddSolution?blanketId=${blanketId}`;
     try {
       const response = await axioss.put(url, formData, {
         headers: {
@@ -85,14 +85,14 @@ const Blanket: React.FC = () => {
   const like = async () => {
     try {
       const response = await axioss.put(
-        `http://localhost:5073/api/Blanket/Like?id=${
+        `https://arhiva-backend.azurewebsites.net/api/Blanket/Like?id=${
           blanket?.id
         }&username=${Cookies.get("username")}`,
         {}
       );
       setLikes(response.data);
       const isLikedResponse = await axioss.get(
-        `http://localhost:5073/api/User/IsLiked?username=${Cookies.get(
+        `https://arhiva-backend.azurewebsites.net/api/User/IsLiked?username=${Cookies.get(
           "username"
         )}&blanketId=${blanket?.id}`
       );
@@ -107,7 +107,7 @@ const Blanket: React.FC = () => {
   useEffect(() => {
     const getKomentari = async () => {
       const response = await axioss.get(
-        `http://localhost:5073/api/Comment/GetForCourseOrBlanket?id=${blanketId}`
+        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${blanketId}`
       );
       setKomentari(response.data);
     };
@@ -118,12 +118,12 @@ const Blanket: React.FC = () => {
   useEffect(() => {
     const getBlanket = async () => {
       const response = await axioss.get(
-        `http://localhost:5073/api/Blanket/GetById?id=${blanketId}`
+        `https://arhiva-backend.azurewebsites.net/api/Blanket/GetById?id=${blanketId}`
       );
       setBlanket(response.data);
       setLikes(response.data.likes);
       const resenjaResponse = await axioss.get(
-        `http://localhost:5073/api/Solution/GetBlanketApproved?blanketId=${blanketId}`
+        `https://arhiva-backend.azurewebsites.net/api/Solution/GetBlanketApproved?blanketId=${blanketId}`
       );
       setResenja(resenjaResponse.data);
     };
@@ -134,7 +134,7 @@ const Blanket: React.FC = () => {
     const getPredmet = async () => {
       if (blanket) {
         const response = await axioss.get(
-          `http://localhost:5073/api/Course/GetByCode?code=${blanket.courseCode}`
+          `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${blanket.courseCode}`
         );
         setPredmet(response.data);
       }

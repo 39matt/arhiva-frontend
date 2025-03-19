@@ -4,7 +4,6 @@ import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import sleep from "../../common/sleep";
-import useAxiosPrivate from "../../common/useAxiosPrivate";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ const Login = () => {
   const onSubmit: SubmitHandler<ILoginFormInput> = async (data) => {
     try {
       const response = await axios.post(
-        `http://localhost:5073/api/User/Login`,
+        `https://arhiva-backend.azurewebsites.net/api/User/Login`,
         JSON.stringify(data),
         {
           headers: {
@@ -35,7 +34,7 @@ const Login = () => {
         Cookies.set("profileUrl", response.data["profileUrl"], { expires: 7 });
         Cookies.set("role", response.data["role"], { expires: 7 });
 
-        axios.defaults.baseURL = "http://localhost:5073/";
+        axios.defaults.baseURL = "https://arhiva-backend.azurewebsites.net/";
         axios.defaults.headers.common = {
           Authorization: `Bearer ${Cookies.get("token")}`,
         };

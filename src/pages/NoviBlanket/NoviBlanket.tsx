@@ -5,7 +5,7 @@ import useAxiosPrivate from "../../common/useAxiosPrivate";
 import { useNavigate } from "react-router-dom";
 
 const NoviBlanket: React.FC = () => {
-  const { register, reset, handleSubmit } = useForm<IDodajBlanketFormInput>();
+  const { register,  handleSubmit } = useForm<IDodajBlanketFormInput>();
   const [message, setMessage] = useState("");
   const [majors, setMajors] = useState<Smer[]>();
   const [courses, setCourses] = useState<Predmet[]>();
@@ -15,7 +15,7 @@ const NoviBlanket: React.FC = () => {
   const navigate = useNavigate();
 
   async function getAllMajors() {
-    const response = await axioss.get("http://localhost:5073/api/Major/GetAll");
+    const response = await axioss.get("https://arhiva-backend.azurewebsites.net/api/Major/GetAll");
     return response.data;
   }
 

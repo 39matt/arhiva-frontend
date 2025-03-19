@@ -10,7 +10,7 @@ const Komentar = ({ komentar, onDelete }) => {
   const obrisiKomentar = () => {
     const obrisi = async () => {
       await axioss.delete(
-        `http://localhost:5073/api/Comment/Delete?by=${komentar.postedById}&on=${komentar.postedOnId}&content=${komentar.content}`,
+        `https://arhiva-backend.azurewebsites.net/api/Comment/Delete?by=${komentar.postedById}&on=${komentar.postedOnId}&content=${komentar.content}`,
         {}
       );
     };
@@ -20,7 +20,7 @@ const Komentar = ({ komentar, onDelete }) => {
   useEffect(() => {
     const getKorisnik = async () => {
       const response = await axioss.get(
-        `http://localhost:5073/api/User/GetById?id=${komentar.postedById}`
+        `https://arhiva-backend.azurewebsites.net/api/User/GetById?id=${komentar.postedById}`
       );
       setKorisnik(response.data);
     };

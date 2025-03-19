@@ -1,18 +1,16 @@
 import config from "../../../config/config.json";
-import React, { Fragment, useEffect, useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import React, { useEffect, useState } from "react";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import { Link } from "react-scroll";
-import { redirect, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { MdOutlinePostAdd } from "react-icons/md";
 
 const Navbar: React.FC = () => {
-  const { navigation, project, callToAction } = config;
+  const { navigation, project } = config;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
   const [token, setToken] = useState<string | null>(null);
-  const [role, setRole] = useState<string | null>(null);
   const [isModerator, setIsModerator] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
@@ -27,12 +25,6 @@ const Navbar: React.FC = () => {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsSticky(true);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
     setToken(Cookies.get("token"));
     setUsername(Cookies.get("username"));
     setIsAdmin(Cookies.get("role") === "Admin" ? "admin" : null);

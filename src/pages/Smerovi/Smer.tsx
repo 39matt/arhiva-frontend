@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import config from "../../config/config.json";
 import Godine from "./Godine";
 import axios from "axios";
 
 async function getMajorByCode(code: string) {
   return await axios
-    .get(`http://localhost:5073/api/Major/GetByCode?code=${code}`, {
+    .get(`https://arhiva-backend.azurewebsites.net/api/Major/GetByCode?code=${code}`, {
       headers: { "Content-Type": "application/json" },
     })
     .then((response) => response.data);

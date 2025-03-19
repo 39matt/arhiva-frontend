@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 async function getPredmeti(smer: string, godina: number) {
   return await axios
     .get(
-      `http://localhost:5073/api/MajorCourse/GetCoursesInMajorByYear?majorCode=${smer}&year=${godina}`,
+      `https://arhiva-backend.azurewebsites.net/api/MajorCourse/GetCoursesInMajorByYear?majorCode=${smer}&year=${godina}`,
       { headers: { "Content-Type": "application/json" } }
     )
     .then((r) => r.data);
