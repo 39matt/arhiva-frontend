@@ -1,0 +1,147 @@
+{
+  "project": {
+    "name": "Arhiva Blanketa",
+    "logo": "https://arhivablanketa.s3.eu-north-1.amazonaws.com/images/ab/logo-white.png"
+  },
+  "navigation": [
+    {
+      "name": "Početna",
+      "href": "/"
+    },
+    {
+      "name": "Blanketi",
+      "href": "/smerovi"
+    }
+  ],
+  "callToAction": {
+    "text": "Pronadji blanket!",
+    "href": "blanketi"
+  },
+  "mainHero": {
+    "title": "Arhiva Blanketa",
+    "subtitle": "Jedini portal koji ce vam trebati u toku svojih studija!",
+    "description": "Arhiva Blanketa je sveobuhvatan i korisnički prijatan online portal dizajniran posebno za studente Elektronskog fakulteta. Služi kao opsežna arhiva prethodnih ispita, pružajući neprocenjiv resurs za pripremu ispita i referencu za učenje.",
+    "img": "https://arhivablanketa.s3.eu-north-1.amazonaws.com/images/ab/library.jpg",
+    "primaryAction": {
+      "text": "Blanketi",
+      "href": "/smerovi"
+    },
+    "secondaryAction": {
+      "text": "Email us",
+      "href": "mailto:issaafakattan@gmail.com?subject=I like react landing page!"
+    }
+  },
+  "threeSection": [
+    {
+      "icon": "archive",
+      "title": "Sveobuhvatna Arhiva",
+      "text": "Ažurirani Materijali: Naša platforma redovno se ažurira najnovijim ispitnim pitanjima i materijalima, čime osiguravamo da studenti imaju pristup najrelevantnijim informacijama."
+    },
+    {
+      "icon": "simple",
+      "title": "Jednostavno i Intuitivno Korišćenje",
+      "text": "Brza i Laka Pretraga: Sa našim naprednim alatima za pretragu, studenti mogu brzo pronaći tačno ono što im treba, štedeći vreme i energiju. Bilo da tražite specifične ispite, beleške ili skripte, sve je dostupno na samo nekoliko klikova."
+    },
+    {
+      "icon": "community",
+      "title": "Podrška i Zajednica",
+      "text": "Zajednica i Saradnja: Pridružite se našoj zajednici studenata gde možete razmenjivati iskustva, deliti savete i međusobno se podržavati. Naša platforma ne samo da pruža resurse, već i povezuje studente širom zemlje, stvarajući mrežu podrške i saradnje."
+    }
+  ],
+  "footer": {
+    "sections": [
+      {
+        "title": "Solutions",
+        "items": ["Marketing", "Analytics", "Commerce", "Data", "Cloud"]
+      },
+      {
+        "title": "Support",
+        "items": ["Pricing", "Documentation", "Guides", "API Status"]
+      },
+      {
+        "title": "Company",
+        "items": ["About", "Blog", "Jobs", "Press", "Partners"]
+      },
+      {
+        "title": "Legal",
+        "items": ["Claims", "Privacy", "Terms", "Policies", "Conditions"]
+      }
+    ],
+    "items": [
+      {
+        "name": "Facebook",
+        "icon": "FaFacebook",
+        "link": "https://www.facebook.com/"
+      },
+      {
+        "name": "Instagram",
+        "icon": "FaInstagram",
+        "link": "https://www.instagram.com/"
+      },
+      {
+        "name": "Twitter",
+        "icon": "FaTwitter",
+        "link": "https://twitter.com/"
+      },
+      {
+        "name": "Twitch",
+        "icon": "FaTwitch",
+        "link": "https://www.twitch.tv/"
+      },
+      { "name": "Github", "icon": "FaGithub", "link": "https://github.com/" }
+    ]
+  },
+  "blanketi": {
+    "godine": [
+      {
+        "id": 2,
+        "naziv": "II godina"
+      },
+      {
+        "id": 3,
+        "naziv": "III godina"
+      },
+      {
+        "id": 4,
+        "naziv": "IV godina"
+      }
+    ],
+    "smerovi": [
+      {
+        "num": 1,
+        "name": "Računarstvo i informatika",
+        "nick": "RII",
+        "img": "../../../public/assets/images/RII.jpg",
+        "href": "/RII"
+      },
+      {
+        "num": 2,
+        "name": "Upravljanje sistemima",
+        "nick": "US",
+        "img": "../../../public/assets/images/UE.jpg",
+        "href": "/US"
+      },
+      {
+        "num": 3,
+        "name": "Telekomunikacije",
+        "nick": "TK",
+        "img": "../../../public/assets/images/TK.jpg",
+        "href": "/TK"
+      },
+      {
+        "num": 4,
+        "name": "Elektronske komponente i mikrosistemi",
+        "nick": "EKM",
+        "img": "../../../public/assets/images/EKM.jpg",
+        "href": "/EKM"
+      },
+      {
+        "num": 5,
+        "name": "Elektroenergetika",
+        "nick": "EE",
+        "img": "https://www.elfak.ni.ac.rs/images/oas/elektroenergetika/elektroenergetika_oas.jpg",
+        "href": "/EE"
+      }
+    ]
+  }
+}
