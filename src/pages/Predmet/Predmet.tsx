@@ -213,12 +213,9 @@ const Predmet: React.FC = () => {
 
   useEffect(() => {
     const getPredmet = async () => {
-      const response = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${predmetCode}`
-      ,{
-        method: "get",
-            headers: { "Content-Type": "application/json" },
-      });
+      const params = new URLSearchParams({code: predmetCode!});
+      const url = `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?${params.toString()}`;
+      const response = await axioss.get(url);
       setPredmet(response.data);
     };
     getPredmet();
