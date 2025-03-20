@@ -197,9 +197,12 @@ const Predmet: React.FC = () => {
   useEffect(() => {
     try {
       const getYears = async () => {
-        let response = await axioss.get(
+        const response = await axioss.get(
           `https://arhiva-backend.azurewebsites.net/api/Blanket/GetCourseYears?courseCode=${predmetCode}`
-        );
+        ,{
+          method: "get",
+              headers: { "Content-Type": "application/json" },
+        });
         setGodine(response.data.sort((a, b) => b.localeCompare(a)));
       };
       getYears();
@@ -210,9 +213,12 @@ const Predmet: React.FC = () => {
 
   useEffect(() => {
     const getPredmet = async () => {
-      let response = await axioss.get(
+      const response = await axioss.get(
         `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${predmetCode}`
-      );
+      ,{
+        method: "get",
+            headers: { "Content-Type": "application/json" },
+      });
       setPredmet(response.data);
     };
     getPredmet();
