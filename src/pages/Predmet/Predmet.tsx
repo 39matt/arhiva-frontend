@@ -183,7 +183,7 @@ const Predmet: React.FC = () => {
           `https://arhiva-backend.azurewebsites.net/api/Blanket/GetByCourse?courseCode=${predmetCode}`,
             {
               method: "get",
-              headers: { "Content-Type": "application/json" },
+              withCredentials: true
             }
         );
         setBlanketi(response.data);
