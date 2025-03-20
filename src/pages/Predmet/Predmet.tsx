@@ -124,7 +124,7 @@ const Predmet: React.FC = () => {
     let predmett;
     try {
       predmett = await axioss
-        .get(`https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${predmetCode}`)
+        .get(`https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${predmetCode}`, { headers: { "Content-Type": "application/json" }, withCredentials: false})
         .then((r) => r.data);
       let response = await axioss.post(
         `https://arhiva-backend.azurewebsites.net/api/Comment/Create?postedByUsername=${Cookies.get(
@@ -133,7 +133,7 @@ const Predmet: React.FC = () => {
         {}
       );
       response = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${predmett.id}`
+        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${predmett.id}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       setKomentari(response.data);
       setMessage("");
@@ -145,11 +145,11 @@ const Predmet: React.FC = () => {
   const refresh = async () => {
     const getComments = async () => {
       let response = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${predmetCode}`
+        `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${predmetCode}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       try {
         response = await axioss.get(
-          `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${response.data["id"]}`
+          `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${response.data["id"]}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
         );
         setKomentari(response.data);
       } catch (err) {
