@@ -32,7 +32,7 @@ const Profil: React.FC = () => {
       .get(
         `https://arhiva-backend.azurewebsites.net/api/User/GetByUsername?username=${Cookies.get(
           "username"
-        )}`
+        )}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       )
       .then((r) => r.data);
   }
@@ -101,11 +101,7 @@ const Profil: React.FC = () => {
       "username"
     )}`;
     try {
-      const response = await axioss.put(url, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axioss.put(url, formData, { headers: { "Content-Type": "application/json" }, withCredentials: false});
       setPoruka(response.data);
       return response.data;
     } catch (error) {

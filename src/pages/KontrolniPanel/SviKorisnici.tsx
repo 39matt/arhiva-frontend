@@ -6,7 +6,7 @@ const SviKorisnici = () => {
 
   useEffect(() => {
     const getKorisnici = async () => {
-      const response = await axios.get("https://arhiva-backend.azurewebsites.net/api/User/GetAll");
+      const response = await axios.get("https://arhiva-backend.azurewebsites.net/api/User/GetAll", { headers: { "Content-Type": "application/json" }, withCredentials: false});
       setKorisnici(response.data);
     };
     getKorisnici();

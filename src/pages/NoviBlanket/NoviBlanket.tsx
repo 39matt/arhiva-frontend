@@ -26,11 +26,7 @@ const NoviBlanket: React.FC = () => {
       data.term
     }&Year=${data.year}&Type=${data.type}&username=${Cookies.get("username")}`;
     try {
-      const response = await axioss.post(url, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axioss.post(url, formData, { headers: { "Content-Type": "application/json" }, withCredentials: false});
       setMessage(response.data);
       return response.data;
     } catch (error) {
