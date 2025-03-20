@@ -182,8 +182,8 @@ const Predmet: React.FC = () => {
         const response = await axioss.get(
           `https://arhiva-backend.azurewebsites.net/api/Blanket/GetByCourse?courseCode=${predmetCode}`,
             {
-              method: "get",
-              withCredentials: false
+              method: "get"
+            , withCredentials: false
             }
         );
         setBlanketi(response.data);
@@ -201,7 +201,8 @@ const Predmet: React.FC = () => {
           `https://arhiva-backend.azurewebsites.net/api/Blanket/GetCourseYears?courseCode=${predmetCode}`
         ,{
           method: "get",
-              headers: { "Content-Type": "application/json" },
+              headers: { "Content-Type": "application/json" }
+            , withCredentials: false
         });
         setGodine(response.data.sort((a, b) => b.localeCompare(a)));
       };
