@@ -179,8 +179,12 @@ const Predmet: React.FC = () => {
   useEffect(() => {
     try {
       const getBlanketi = async () => {
-        let response = await axioss.get(
-          `https://arhiva-backend.azurewebsites.net/api/Blanket/GetByCourse?courseCode=${predmetCode}`
+        const response = await axioss.get(
+          `https://arhiva-backend.azurewebsites.net/api/Blanket/GetByCourse?courseCode=${predmetCode}`,
+            {
+              method: "get",
+              headers: { "Content-Type": "application/json" },
+            }
         );
         setBlanketi(response.data);
       };
