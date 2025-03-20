@@ -15,7 +15,7 @@ const NoviBlanket: React.FC = () => {
   const navigate = useNavigate();
 
   async function getAllMajors() {
-    const response = await axioss.get("https://arhiva-backend.azurewebsites.net/api/Major/GetAll");
+    const response = await axioss.get("https://arhiva-backend.azurewebsites.net/api/Major/GetAll", { headers: { "Content-Type": "application/json" }, withCredentials: false});
     return response.data;
   }
 
@@ -40,7 +40,7 @@ const NoviBlanket: React.FC = () => {
 
   const getPredmeti = async (major, godina) => {
     const response = await axioss.get(
-      `/api/MajorCourse/GetCoursesInMajorByYear?majorCode=${major}&year=${godina}`
+      `/api/MajorCourse/GetCoursesInMajorByYear?majorCode=${major}&year=${godina}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
     );
     setCourses(response.data);
   };

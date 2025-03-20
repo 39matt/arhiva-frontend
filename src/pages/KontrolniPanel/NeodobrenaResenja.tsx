@@ -20,7 +20,7 @@ const NeodobreniBlanketi = () => {
       {}
     );
     response = await axioss.get(
-      `https://arhiva-backend.azurewebsites.net/api/Solution/GetUnapproved`
+      `https://arhiva-backend.azurewebsites.net/api/Solution/GetUnapproved`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
     );
     setNeodobrenaResenja(response.data);
   };
@@ -31,7 +31,7 @@ const NeodobreniBlanketi = () => {
       {}
     );
     response = await axioss.get(
-      `https://arhiva-backend.azurewebsites.net/api/Solution/GetUnapproved`
+      `https://arhiva-backend.azurewebsites.net/api/Solution/GetUnapproved`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
     );
     setNeodobrenaResenja(response.data);
   };
@@ -40,7 +40,7 @@ const NeodobreniBlanketi = () => {
     if (Cookies.get("role") === "Korisnik") navigate("/");
     const getResenja = async () => {
       const response = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Solution/GetUnapproved`
+        `https://arhiva-backend.azurewebsites.net/api/Solution/GetUnapproved`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       setNeodobrenaResenja(response.data);
 
@@ -48,7 +48,7 @@ const NeodobreniBlanketi = () => {
       const blanketiData = await Promise.all(
         response.data.map((resenje) =>
           axioss.get(
-            `https://arhiva-backend.azurewebsites.net/api/Blanket/GetById?id=${resenje.blanketId}`
+            `https://arhiva-backend.azurewebsites.net/api/Blanket/GetById?id=${resenje.blanketId}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
           )
         )
       );

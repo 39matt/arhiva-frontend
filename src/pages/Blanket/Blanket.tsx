@@ -34,10 +34,10 @@ const Blanket: React.FC = () => {
   const refresh = async () => {
     try {
       const response = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Blanket/GetById?id=${blanketId}`
+        `https://arhiva-backend.azurewebsites.net/api/Blanket/GetById?id=${blanketId}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       const commentResponse = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${response.data.id}`
+        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${response.data.id}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       setKomentari(commentResponse.data);
     } catch (err) {
@@ -51,11 +51,10 @@ const Blanket: React.FC = () => {
       await axioss.post(
         `https://arhiva-backend.azurewebsites.net/api/Comment/Create?postedByUsername=${Cookies.get(
           "username"
-        )}&postedOnBlanketPredmet=${blanket?.id}&content=${data.content}`,
-        {}
+        )}&postedOnBlanketPredmet=${blanket?.id}&content=${data.content}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       const response = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${blanket?.id}`
+        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${blanket?.id}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       setKomentari(response.data);
       setMessage("");
@@ -107,7 +106,7 @@ const Blanket: React.FC = () => {
   useEffect(() => {
     const getKomentari = async () => {
       const response = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${blanketId}`
+        `https://arhiva-backend.azurewebsites.net/api/Comment/GetForCourseOrBlanket?id=${blanketId}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       setKomentari(response.data);
     };
@@ -118,12 +117,12 @@ const Blanket: React.FC = () => {
   useEffect(() => {
     const getBlanket = async () => {
       const response = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Blanket/GetById?id=${blanketId}`
+        `https://arhiva-backend.azurewebsites.net/api/Blanket/GetById?id=${blanketId}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       setBlanket(response.data);
       setLikes(response.data.likes);
       const resenjaResponse = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Solution/GetBlanketApproved?blanketId=${blanketId}`
+        `https://arhiva-backend.azurewebsites.net/api/Solution/GetBlanketApproved?blanketId=${blanketId}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       setResenja(resenjaResponse.data);
     };
@@ -134,7 +133,7 @@ const Blanket: React.FC = () => {
     const getPredmet = async () => {
       if (blanket) {
         const response = await axioss.get(
-          `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${blanket.courseCode}`
+          `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?code=${blanket.courseCode}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
         );
         setPredmet(response.data);
       }

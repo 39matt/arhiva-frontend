@@ -17,7 +17,7 @@ const NeodobreniBlanketi = () => {
       {}
     );
     response = await axioss.get(
-      `https://arhiva-backend.azurewebsites.net/api/Blanket/GetUnapproved`
+      `https://arhiva-backend.azurewebsites.net/api/Blanket/GetUnapproved`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
     );
     setNeodobreniBlanketi(response.data);
   };
@@ -27,7 +27,7 @@ const NeodobreniBlanketi = () => {
       {}
     );
     response = await axioss.get(
-      `https://arhiva-backend.azurewebsites.net/api/Blanket/GetUnapproved`
+      `https://arhiva-backend.azurewebsites.net/api/Blanket/GetUnapproved`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
     );
     setNeodobreniBlanketi(response.data);
   };
@@ -36,7 +36,7 @@ const NeodobreniBlanketi = () => {
     if (Cookies.get("role") === "Korisnik") navigate("/");
     const getBlanketi = async () => {
       const response = await axioss.get(
-        `https://arhiva-backend.azurewebsites.net/api/Blanket/GetUnapproved`
+        `https://arhiva-backend.azurewebsites.net/api/Blanket/GetUnapproved`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
       );
       setNeodobreniBlanketi(response.data);
     };

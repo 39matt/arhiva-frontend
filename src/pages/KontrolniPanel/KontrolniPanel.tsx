@@ -278,7 +278,7 @@ const KontrolniPanel = () => {
         <form
           onSubmit={handleSubmitUnaprediKorisnikaOpen(async (data) => {
             const response = await axioss.get(
-              `https://arhiva-backend.azurewebsites.net/api/User/GetByUsername?username=${data.username}`
+              `https://arhiva-backend.azurewebsites.net/api/User/GetByUsername?username=${data.username}`, { headers: { "Content-Type": "application/json" }, withCredentials: false}
             );
             setUser({
               name: response.data["name"],
