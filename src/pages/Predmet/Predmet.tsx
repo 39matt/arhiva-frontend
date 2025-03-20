@@ -183,7 +183,7 @@ const Predmet: React.FC = () => {
           `https://arhiva-backend.azurewebsites.net/api/Blanket/GetByCourse?courseCode=${predmetCode}`,
             {
               method: "get",
-              withCredentials: true
+              withCredentials: false
             }
         );
         setBlanketi(response.data);
@@ -215,7 +215,7 @@ const Predmet: React.FC = () => {
     const getPredmet = async () => {
       const params = new URLSearchParams({code: predmetCode!});
       const url = `https://arhiva-backend.azurewebsites.net/api/Course/GetByCode?${params.toString()}`;
-      const response = await axioss.get(url, { headers: { "Content-Type": "application/json" }});
+      const response = await axioss.get(url, { headers: { "Content-Type": "application/json" }, withCredentials: false});
       setPredmet(response.data);
     };
     getPredmet();
